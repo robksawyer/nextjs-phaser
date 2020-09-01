@@ -6,7 +6,8 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "component": "foldit -c "
+    "component": "foldit -c ",
+    "deploy": "gcloud app deploy app.yaml --project my-game"
   },
   "dependencies": {
     "autoprefixer": "^9.8.6",

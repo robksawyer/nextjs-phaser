@@ -1,19 +1,12 @@
 /**
  * @file Game.js
  */
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState, useRef, useCallback } from 'react'
 import PropTypes from 'prop-types'
 import dynamic from 'next/dynamic'
 
-const Phaser = dynamic(
-  () => import('phaser').then((mod) => console.log('mod', mod)), 
-  { 
-    ssr: false ,
-    loading: () => <p>Loading...</p> 
-  }
-)
-
 import styles from './Game.module.css'
+
 
 const Game = (props) => {
   const {
@@ -22,17 +15,20 @@ const Game = (props) => {
     variant,
     children,
   } = props
+  const [phaser, setPhaser] = useState()
 
-  const [game, setGame] = useState()
+  import('phaser/src/phaser').then((mod) => { 
+    if (mod && !phaser) {
+      setPhaser(mod.default)
+    } 
+  })
 
-  // useEffect(() => {
-  //   console.log('browser', process.browser)
-  //   const game = new Phaser.Game()
-  //   console.log('game', game)
-  //   setGame(game)
-  // },[])
-  
-  console.log('Phaser', Phaser)
+  useEffect(()=>{
+    if (phaser){
+      const game = new phaser.Game()
+      console.log('game', game)
+    }
+  }, [phaser])
 
   return (
     <Tag className={`${styles.game} ${styles[`game__${variant}`]} ${className}`}>
