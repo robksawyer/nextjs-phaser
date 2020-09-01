@@ -1,0 +1,13 @@
+/* Font includes */
+
+/* Example */
+/* @font-face {
+  font-display: auto;
+  font-family: 'MyFont';
+  font-style: normal !important;
+  font-weight: normal !important;
+  src: url('/fonts/MyFont-Book.woff2') format('woff2'),
+    url('/fonts/MyFont-Book.woff') format('woff'),
+    url('/fonts/MyFont-Book.eot?#iefix') format('embedded-opentype'),
+    url('/fonts/MyFont-Book.ttf') format('truetype');
+} */

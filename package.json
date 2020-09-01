@@ -9,8 +9,17 @@
     "component": "foldit -c "
   },
   "dependencies": {
+    "autoprefixer": "^9.8.6",
     "next": "9.5.2",
     "phaser": "^3.24.1",
+    "postcss-css-variables": "^0.17.0",
+    "postcss-easing-gradients": "^3.0.1",
+    "postcss-flexbugs-fixes": "^4.2.1",
+    "postcss-import": "^12.0.1",
+    "postcss-nested": "^4.2.3",
+    "postcss-preset-env": "^6.7.0",
+    "postcss-selector-not": "^4.0.0",
+    "prettier": "^2.1.1",
     "react": "16.13.1",
     "react-dom": "16.13.1"
   },
@@ -21,6 +30,7 @@
     "babel-plugin-inline-react-svg": "^1.1.1",
     "eslint": "^7.8.0",
     "eslint-config-airbnb": "^18.2.0",
+    "eslint-config-prettier": "^6.11.0",
     "eslint-loader": "^4.0.2",
     "eslint-plugin-import": "^2.22.0",
     "eslint-plugin-jsx-a11y": "^6.3.1",

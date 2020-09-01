@@ -25,14 +25,14 @@ const Game = (props) => {
 
   const [game, setGame] = useState()
 
-  useEffect(() => {
-    console.log('browser', process.browser)
-    const game = new Phaser.Game()
-    console.log('game', game)
-    setGame(game)
-  },[])
+  // useEffect(() => {
+  //   console.log('browser', process.browser)
+  //   const game = new Phaser.Game()
+  //   console.log('game', game)
+  //   setGame(game)
+  // },[])
   
-  console.log('game', game)
+  console.log('Phaser', Phaser)
 
   return (
     <Tag className={`${styles.game} ${styles[`game__${variant}`]} ${className}`}>
