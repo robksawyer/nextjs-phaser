@@ -3,20 +3,21 @@
  */
 import * as React from 'react'
 import PropTypes from 'prop-types'
-import dynamic from 'next/dynamic'
 
 import styles from './Game.module.css'
 
-const Game = ({ tagName: Tag = 'canvas', className = '', variant = 'default', children = '' }) => {
-
-
+const Game = ({ 
+  tagName: Tag = 'canvas', 
+  className = 'absolute top-0 left-0 w-full h-full bg-red-300', 
+  variant = 'default'
+}) => {
+  const ref = React.useRef()
+  const game = React.useRef()
   const Phaser = React.useMemo(() => {
     if (typeof window !== 'undefined' && typeof window.navigator !== 'undefined') {
       return require('phaser/src/phaser')
     }
   },[]);
-  
-
 
   console.log('Phaser', Phaser)
 
@@ -26,15 +27,16 @@ const Game = ({ tagName: Tag = 'canvas', className = '', variant = 'default', ch
   //   }
   // })
 
-  const preload = () => {
-    console.log('preload ->  Preloading assets...')
-    // this.load.setBaseURL('http://labs.phaser.io')
-    // this.load.image('logo', '/assets/png/phaser3-logo.png')
-    // this.load.glsl('bundle', '/assets/glsl/plasma-bundle.glsl.js')
-    // this.load.glsl('stars', '/assets/glsl/starfields.glsl.js')
-  }
+  const preload = React.useCallback(() => {
+    console.log('preload ->  preloading assets...', game.current)
+    const g = game.current
+    g.load.setBaseURL('http://labs.phaser.io');
+    g.load.image('sky', 'assets/skies/space3.png');
+    g.load.image('logo', 'assets/sprites/phaser3-logo.png');
+    g.load.image('red', 'assets/particles/red.png');
+  }, [game])
 
-  const create = () => {
+  const create = React.useCallback(() => {
     console.log('create -> creating elements...')
     // this.add.shader('RGB Shift Field', 0, 0, 800, 600).setOrigin(0)
     // this.add.shader('Plasma', 0, 412, 800, 172).setOrigin(0)
@@ -49,16 +51,15 @@ const Game = ({ tagName: Tag = 'canvas', className = '', variant = 'default', ch
     //   yoyo: true,
     //   repeat: -1,
     // })
-  }
+  }, [])
 
   if (Phaser) {
     const config = {
       type: Phaser.AUTO,
-      parent: 'phaser-parent',
+      parent: ref.current,
       pixelArt: true,
+      autoCenter: true,
       backgroundColor: '#000000',
-      width: 800,
-      height: 600,
       physics: {
         default: 'arcade',
         arcade: {
@@ -66,23 +67,22 @@ const Game = ({ tagName: Tag = 'canvas', className = '', variant = 'default', ch
         },
       },
       scene: {
-        preload: preload.bind(preload),
-        create: create.bind(create),
+        preload,
+        create,
       },
     }
-    const game = new Phaser.Game(config)
-    console.log('game', game)
+    game.current = new Phaser.Game(config)
+    console.log('game', game.current)
   }
-  
 
-  return (
+  return Phaser ? (
     <Tag
-      id="phaser-parent"
       className={`${styles.game} ${styles[`game__${variant}`]} ${className}`}
+      
     >
-      {children}
+     <canvas ref={ref}/>
     </Tag>
-  )
+  ): null
 }
 
 Game.propTypes = {
