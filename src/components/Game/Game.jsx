@@ -66,9 +66,8 @@ const Game = ({
   }, []);
 
   useLayoutEffect(() => {
+    let g;
     if (Phaser && parent.current && canvas.current) {
-      console.log('parent.current', parent.current);
-      console.log('canvas.current', canvas.current);
       const config = {
         type: Phaser.CANVAS,
         parent: parent.current,
@@ -93,9 +92,10 @@ const Game = ({
         //   postBoot: (game) => console.log('postBoot -> ', game),
         // }
       };
-      game.current = new Phaser.Game(config);
+      g = game.current = new Phaser.Game(config);
       console.log('game', game.current);
     }
+    return () => g.destroy();
   }, [Phaser, create, preload, parent, canvas]);
 
   return Phaser ? (
