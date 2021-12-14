@@ -4,14 +4,14 @@ const nextConfig = {
       config.module.rules.push({
         test: /\.(spec,test,stories)\.(js|jsx)$/,
         loader: 'ignore-loader',
-      })
+      });
     }
 
     // SVG Loader
     config.module.rules.push({
       test: /\.svg$/,
       use: ['@svgr/webpack'],
-    })
+    });
 
     // Load GLSL Shaders
     // config.module.rules.push({
@@ -20,10 +20,13 @@ const nextConfig = {
     //   use: ['raw-loader', 'glslify-loader'],
     // })
 
-    return config
+    return config;
   },
 
-  env: {},
-}
+  env: {
+    CANVAS_RENDERER: JSON.stringify(true),
+    WEBGL_RENDERER: JSON.stringify(true),
+  },
+};
 
-module.exports = nextConfig
+module.exports = nextConfig;

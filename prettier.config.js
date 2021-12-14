@@ -1,1 +1,4 @@
-module.exports = require('@spotify/web-scripts/config/prettier.config.js')
+module.exports = {
+  ...require('@spotify/prettier-config'),
+  //semi: false,
+};

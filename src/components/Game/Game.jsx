@@ -15,7 +15,7 @@ const Game = ({
   const game = React.useRef()
   const Phaser = React.useMemo(() => {
     if (typeof window !== 'undefined' && typeof window.navigator !== 'undefined') {
-      return require('phaser/src/phaser')
+      return require('phaser')
     }
   },[]);
 
@@ -28,16 +28,18 @@ const Game = ({
   // })
 
   const preload = React.useCallback(() => {
-    console.log('preload ->  preloading assets...', game.current)
     const g = game.current
-    g.load.setBaseURL('http://labs.phaser.io');
-    g.load.image('sky', 'assets/skies/space3.png');
-    g.load.image('logo', 'assets/sprites/phaser3-logo.png');
-    g.load.image('red', 'assets/particles/red.png');
-  }, [game])
+    const { load } = g.scene.keys.default
+    console.log('preload ->  preloading assets...', this)
+    // const g = game.current
+    // g.load.setBaseURL('http://labs.phaser.io');
+    // g.load.image('sky', 'assets/skies/space3.png');
+    // g.load.image('logo', 'assets/sprites/phaser3-logo.png');
+    // g.load.image('red', 'assets/particles/red.png');
+  }, [])
 
-  const create = React.useCallback(() => {
-    console.log('create -> creating elements...')
+  const create = React.useCallback((e) => {
+    console.log('create -> creating elements...', e)
     // this.add.shader('RGB Shift Field', 0, 0, 800, 600).setOrigin(0)
     // this.add.shader('Plasma', 0, 412, 800, 172).setOrigin(0)
 
@@ -56,7 +58,7 @@ const Game = ({
   if (Phaser) {
     const config = {
       type: Phaser.AUTO,
-      parent: ref.current,
+      parent: 'phaser-game',
       pixelArt: true,
       autoCenter: true,
       backgroundColor: '#000000',
@@ -67,8 +69,8 @@ const Game = ({
         },
       },
       scene: {
-        preload,
-        create,
+        preload: (e) => preload(e),
+        create: (e) => create(e),
       },
     }
     game.current = new Phaser.Game(config)
@@ -80,7 +82,7 @@ const Game = ({
       className={`${styles.game} ${styles[`game__${variant}`]} ${className}`}
       
     >
-     <canvas ref={ref}/>
+     <canvas id="phaser-game" className="relative w-auto h-auto" />
     </Tag>
   ): null
 }
