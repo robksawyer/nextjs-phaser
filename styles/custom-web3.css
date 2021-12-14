@@ -1,0 +1,7 @@
+/* Web3 Modal */
+.web3modal-modal-lightbox {
+	z-index: 9999 !important;
+}
+.web3modal-modal-card {
+	max-width: 400px !important;
+}

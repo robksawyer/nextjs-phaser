@@ -1,13 +1,16 @@
-/* Font includes */
+/**
+* @file fonts.css
+*/
 
-/* Example */
-/* @font-face {
+/* Examples */
+/* 
+@font-face {
   font-display: auto;
-  font-family: 'MyFont';
+  font-family: 'CaslonAntique';
   font-style: normal !important;
   font-weight: normal !important;
-  src: url('/fonts/MyFont-Book.woff2') format('woff2'),
-    url('/fonts/MyFont-Book.woff') format('woff'),
-    url('/fonts/MyFont-Book.eot?#iefix') format('embedded-opentype'),
-    url('/fonts/MyFont-Book.ttf') format('truetype');
-} */
+  src: url('/fonts/CaslonAntique.woff2') format('woff2'),
+    url('/fonts/CaslonAntique.woff') format('woff'),
+    url('/fonts/CaslonAntique.ttf') format('truetype');
+}
+*/

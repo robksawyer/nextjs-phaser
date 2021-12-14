@@ -1,8 +1,23 @@
-@import "tailwindcss/base";
-/* @import "./custom/tailwind-custom-base.css"; */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 
-@import "tailwindcss/components";
-@import "./custom/tailwind-custom-components.css";
+@layer utilities {
+  /**
+  * Extending Tailwind with custom utilities
+  */
 
-@import "tailwindcss/utilities";
-@import "./custom/tailwind-custom-utilities.css";
+  /* Debugging */
+  .debug {
+    border: 1px solid yellow;
+    background-color: rgba(255, 255, 0, 0.5);
+  }
+
+  .debug-border {
+    border: 1px solid yellow;
+  }
+
+  .debug-bg {
+    background-color: rgba(255, 255, 0, 0.5);
+  }
+}
