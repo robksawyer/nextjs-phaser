@@ -29,30 +29,35 @@ const Game = ({
 
   const preload = React.useCallback(() => {
     const g = game.current
-    const { load } = g.scene.keys.default
-    console.log('preload ->  preloading assets...', this)
-    // const g = game.current
-    // g.load.setBaseURL('http://labs.phaser.io');
-    // g.load.image('sky', 'assets/skies/space3.png');
-    // g.load.image('logo', 'assets/sprites/phaser3-logo.png');
-    // g.load.image('red', 'assets/particles/red.png');
+    const _this = g.scene.keys.default
+    console.log('preload ->  preloading assets...',_this)
+    _this.load.setBaseURL('http://labs.phaser.io');
+    _this.load.image('sky', 'assets/skies/space3.png');
+    _this.load.image('logo', 'assets/sprites/phaser3-logo.png');
+    _this.load.image('red', 'assets/particles/red.png');
   }, [])
 
   const create = React.useCallback((e) => {
-    console.log('create -> creating elements...', e)
-    // this.add.shader('RGB Shift Field', 0, 0, 800, 600).setOrigin(0)
-    // this.add.shader('Plasma', 0, 412, 800, 172).setOrigin(0)
+    const g = game.current
+    const _this = g.scene.keys.default
+    console.log('create -> creating elements...', _this)
+    _this.add.image(400, 300, 'sky');
 
-    // const logo = this.add.image(400, 70, 'logo')
+    var particles = _this.add.particles('red');
 
-    // this.tweens.add({
-    //   targets: logo,
-    //   y: 350,
-    //   duration: 1500,
-    //   ease: 'Sine.inOut',
-    //   yoyo: true,
-    //   repeat: -1,
-    // })
+    var emitter = particles.createEmitter({
+        speed: 100,
+        scale: { start: 1, end: 0 },
+        blendMode: 'ADD'
+    });
+
+    var logo = _this.physics.add.image(400, 100, 'logo');
+
+    logo.setVelocity(100, 200);
+    logo.setBounce(1, 1);
+    logo.setCollideWorldBounds(true);
+
+    emitter.startFollow(logo);
   }, [])
 
   if (Phaser) {
