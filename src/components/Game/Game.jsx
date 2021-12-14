@@ -10,10 +10,12 @@ import styles from './Game.module.css'
 const Game = ({ tagName: Tag = 'canvas', className = '', variant = 'default', children = '' }) => {
 
 
-  let Phaser = null;
-  if (typeof window !== 'undefined' && typeof window.navigator !== 'undefined') {
-    Phaser = require('phaser/src/phaser')
-  }
+  const Phaser = React.useMemo(() => {
+    if (typeof window !== 'undefined' && typeof window.navigator !== 'undefined') {
+      return require('phaser/src/phaser')
+    }
+  },[]);
+  
 
 
   console.log('Phaser', Phaser)
@@ -69,9 +71,9 @@ const Game = ({ tagName: Tag = 'canvas', className = '', variant = 'default', ch
       },
     }
     const game = new Phaser.Game(config)
-
     console.log('game', game)
   }
+  
 
   return (
     <Tag
