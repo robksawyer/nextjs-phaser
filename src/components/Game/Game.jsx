@@ -18,16 +18,14 @@ const Game = ({ tagName: Tag = 'canvas', className = '', variant = 'default', ch
 
   console.log('Phaser', Phaser)
 
-
   // import('phaser/src/phaser').then((mod) => {
   //   if (mod && !Phaser) {
   //     setPhaser(mod.default)
   //   }
   // })
 
-  const preload = (game) => {
-    console.log('game', game)
-    console.log('Game: Preloading assets...')
+  const preload = () => {
+    console.log('preload ->  Preloading assets...')
     // this.load.setBaseURL('http://labs.phaser.io')
     // this.load.image('logo', '/assets/png/phaser3-logo.png')
     // this.load.glsl('bundle', '/assets/glsl/plasma-bundle.glsl.js')
@@ -35,7 +33,7 @@ const Game = ({ tagName: Tag = 'canvas', className = '', variant = 'default', ch
   }
 
   const create = () => {
-    console.log('Game: Creating elements...')
+    console.log('create -> creating elements...')
     // this.add.shader('RGB Shift Field', 0, 0, 800, 600).setOrigin(0)
     // this.add.shader('Plasma', 0, 412, 800, 172).setOrigin(0)
 
