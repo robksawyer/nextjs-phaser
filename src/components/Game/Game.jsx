@@ -7,20 +7,28 @@ import dynamic from 'next/dynamic'
 
 import styles from './Game.module.css'
 
-const Game = (props) => {
-  const { tagName: Tag, className, variant, children } = props
-  const [Phaser, setPhaser] = React.useState()
+const Game = ({ tagName: Tag = 'canvas', className = '', variant = 'default', children = '' }) => {
 
-  import('phaser/src/phaser').then((mod) => {
-    if (mod && !Phaser) {
-      setPhaser(mod.default)
-    }
-  })
+
+  let Phaser = null;
+  if (typeof window !== 'undefined' && typeof window.navigator !== 'undefined') {
+    Phaser = require('phaser/src/phaser')
+  }
+
+
+  console.log('Phaser', Phaser)
+
+
+  // import('phaser/src/phaser').then((mod) => {
+  //   if (mod && !Phaser) {
+  //     setPhaser(mod.default)
+  //   }
+  // })
 
   const preload = (game) => {
     console.log('game', game)
     console.log('Game: Preloading assets...')
-    this.load.setBaseURL('http://labs.phaser.io')
+    // this.load.setBaseURL('http://labs.phaser.io')
     // this.load.image('logo', '/assets/png/phaser3-logo.png')
     // this.load.glsl('bundle', '/assets/glsl/plasma-bundle.glsl.js')
     // this.load.glsl('stars', '/assets/glsl/starfields.glsl.js')
@@ -82,13 +90,6 @@ Game.propTypes = {
   className: PropTypes.string,
   variant: PropTypes.oneOf(['default']),
   children: PropTypes.node,
-}
-
-Game.defaultProps = {
-  tagName: 'canvas',
-  className: '',
-  variant: 'default',
-  children: '',
 }
 
 export default Game
