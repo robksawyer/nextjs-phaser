@@ -64,6 +64,8 @@ const Game = ({
     const config = {
       type: Phaser.AUTO,
       parent: 'phaser-game',
+      width: 800,
+      height: 600,
       pixelArt: true,
       autoCenter: true,
       backgroundColor: '#000000',
