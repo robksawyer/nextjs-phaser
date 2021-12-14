@@ -1,14 +1,15 @@
 /**
  * @file Game.js
  */
-import React, { useEffect, useState, useRef, useCallback } from 'react'
+import * as React from 'react'
 import PropTypes from 'prop-types'
 import dynamic from 'next/dynamic'
+
 import styles from './Game.module.css'
 
 const Game = (props) => {
   const { tagName: Tag, className, variant, children } = props
-  const [Phaser, setPhaser] = useState()
+  const [Phaser, setPhaser] = React.useState()
 
   import('phaser/src/phaser').then((mod) => {
     if (mod && !Phaser) {

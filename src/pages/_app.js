@@ -1,7 +1,6 @@
 import * as React from 'react'
 import Router from 'next/router'
 import NProgress from 'nprogress'
-import { AuthUserProvider } from '@/contexts/AuthUserContext'
 
 // Import Font Styles
 // You can find fonts at https://fonts.adobe.com/
@@ -40,11 +39,7 @@ Router.onRouteChangeError = () => {
 }
 
 function MyApp({ Component, pageProps }) {
-  return (
-    <AuthUserProvider>
-      <Component {...pageProps} />
-    </AuthUserProvider>
-  )
+  return <Component {...pageProps} />
 }
 
 export default MyApp
